@@ -13,7 +13,7 @@ function saveOptionsAsn(e) {
 function restoreOptions() {
   var gettingItem = browser.storage.local.get('geo');
   gettingItem.then((res) => {
-    document.querySelector("#colour").value = res.colour || 'North Korea, Russia';
+    document.querySelector("#geo").value = res.geo || 'North Korea, Russia';
   });
   
   gettingItem = browser.storage.local.get('asn');
