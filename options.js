@@ -13,12 +13,12 @@ function saveOptionsAsn(e) {
 function restoreOptions() {
   var gettingItem = browser.storage.local.get('geo');
   gettingItem.then((res) => {
-    document.querySelector("#geo").value = res.colour || 'North Korea, Russia';
+    document.querySelector("#colour").value = res.colour || 'North Korea, Russia';
   });
   
   gettingItem = browser.storage.local.get('asn');
   gettingItem.then((res) => {
-    document.querySelector("#asn").value = res.asn || '1000, 1200, 1301';
+    document.querySelector("#asn").value = res.asn || '1000, 1101, 1200';
   });
 }
 
