@@ -11,6 +11,7 @@ To install:
 	Choose any file in this folder
 
 To test:
+
 	Use Shift + Command + J to bring out the console
   
 Develop guide:
