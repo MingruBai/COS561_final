@@ -1,6 +1,6 @@
 function saveOptionsGeo(e) {
   browser.storage.local.set({
-    colour: document.querySelector("#colour").value
+    geo: document.querySelector("#geo").value
   });
 }
 
@@ -11,14 +11,14 @@ function saveOptionsAsn(e) {
 }
 
 function restoreOptions() {
-  var gettingItem = browser.storage.local.get('colour');
+  var gettingItem = browser.storage.local.get('geo');
   gettingItem.then((res) => {
-    document.querySelector("#colour").value = res.colour || 'Firefox red';
+    document.querySelector("#geo").value = res.colour || 'North Korea, Russia';
   });
   
   gettingItem = browser.storage.local.get('asn');
   gettingItem.then((res) => {
-    document.querySelector("#asn").value = res.asn || '1000';
+    document.querySelector("#asn").value = res.asn || '1000, 1200, 1301';
   });
 }
 
