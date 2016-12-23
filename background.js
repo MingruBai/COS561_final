@@ -23,6 +23,7 @@ function traceRoute(hostname) {
 
 function translationCallback(response) {
 	if (response['loc'] == undefined) return;
+	if (response['org'] == undefined) return;
 	ipDetails.push(response);
 	browser.storage.local.set({
     	ipDetails: ipDetails

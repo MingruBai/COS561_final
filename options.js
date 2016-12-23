@@ -34,9 +34,19 @@ function initMap() {
   gettingItem.then((res) => {
   
   var latlngbounds = new google.maps.LatLngBounds();
+  var div = document.getElementById('asn_list');
+  div.innerHTML = "";
   
   	for (var i = 0; i < res.ipDetails.length; i++){
       var loc = res.ipDetails[i]["loc"].split(",");
+      var org = res.ipDetails[i]["org"].split(" ")[0];
+      console.log(org);
+      
+	  div.innerHTML = div.innerHTML + org;
+	  if (i != res.ipDetails.length - 1) {
+	  	div.innerHTML = div.innerHTML + " &#8594; ";
+	  }
+      
       var locObj = [];
       locObj["lat"] = parseFloat(loc[0]);
       locObj["lng"] = parseFloat(loc[1]);
