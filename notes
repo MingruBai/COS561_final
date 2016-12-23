@@ -1,0 +1,16 @@
+embed:
+AIzaSyDc1VdiBAqXgJsJdxkCKk4gYx2BW86Ettk
+
+js:
+AIzaSyAbha0-REhiOcRw5AkJXrs90uHa93CWN5I
+
+
+Hello,
+I found a first solution using:
+about: config
+in firefox navigation bar
+then double click on
+security.csp.enable
+that turns true to false
+
+But this solution seems a bit restrictive, I continue to look better.

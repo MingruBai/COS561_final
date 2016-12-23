@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 
 <html>
+
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="options.css">
   </head>
 
 <body>
+
+  <div id="map"></div>
+  <div id="asn_list">
+    <p>Uninitialized -- please visit a website.</p>
+  </div>
+
   <form id="geo_form">
     <fieldset>
       <legend>Dubious Geos</legend>
-      <input type="text" id="geo" size="115">
-      <button type="submit">Save</button>
+      <input type="text" id="geo" size="55">
+      <button type="submit">Update</button>
     </fieldset>
   </form>
 
     <form id="asn_form">
     <fieldset>
       <legend>Dubious ASNs</legend>
-      <input type="text" id="asn" size="115">
-      <button type="submit">Save</button>
+      <input type="text" id="asn" size="55">
+      <button type="submit">Update</button>
     </fieldset>
   </form>
-
   <script src="options.js"></script>
+  <script src="background.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbha0-REhiOcRw5AkJXrs90uHa93CWN5I&callback=initMap">
+  </script>
 </body>
-
 </html>
