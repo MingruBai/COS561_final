@@ -11,5 +11,5 @@
       "default_title": "COS 561",
       "default_popup": "options.html"
   },
-  "permissions": ["storage", "webRequest", "notifications"]
+  "permissions": ["storage", "webRequest", "notifications", "webNavigation"]
 }
