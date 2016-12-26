@@ -5,7 +5,7 @@ function processURL(requestDetails) {
 	if (url.hostname.includes("ipinfo.io")) {
 		return;
 	}
-	
+		
 	console.log("Processing: " + url.hostname);
 	loadDubious();
 	// Issue traceRoute command to retrieve a list of IPs:
