@@ -120,8 +120,8 @@ function compareHistory(url, ips) {
 var ipDetails = [];
 var dubiousGeo = [];
 var dubiousAsn = [];
-// always use full address (with www.)
+// always use full address (e.g. admissions.duke.edu, www.google.com)
 browser.webRequest.onBeforeRequest.addListener(
 	processURL,
-	{urls: ["*://*/"]}
+	{urls: ["*://*/*"]} // match pattern: https or http://anyhost/anypath
 )
