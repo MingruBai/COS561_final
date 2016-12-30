@@ -3,6 +3,7 @@
   "manifest_version": 2,
   "name": "Network Analytics Suite",
   "version": "1.0",
+  "author": "Mingru Bai, Lawrence Lin, Qipeng Liu, Liwei Song"
 
   "background": {
       "scripts": ["background.js"]
