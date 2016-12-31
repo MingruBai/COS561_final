@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "Network Analytics Suite",
   "version": "1.0",
-  "author": "Mingru Bai, Lawrence Lin, Qipeng Liu, Liwei Song"
+  "author": "Mingru Bai, Lawrence Lin, Qipeng Liu, Liwei Song",
 
   "background": {
       "scripts": ["background.js"]
@@ -12,5 +12,6 @@
       "default_title": "COS 561",
       "default_popup": "options.html"
   },
-  "permissions": ["storage", "webRequest", "notifications", "webNavigation"]
+  "permissions": ["storage", "webRequest", "notifications", "webNavigation"],
+  "web_accessible_resources": ["resources/countryNames.json"]
 }

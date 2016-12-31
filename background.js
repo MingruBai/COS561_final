@@ -42,7 +42,11 @@ function translationCallback(response) {
   	}
   	
   	// alert if dubious geo:
-  	var countryString = response["country"];
+  	var countryCode = response["country"];
+  	// translate country code to country name
+  	var countryString = this.countryNames[countryCode];
+  	console.log("country: " + countryString);
+
   	if (dubiousGeo.indexOf(countryString) > -1) {
   		browser.notifications.create({
 	    	"type": "basic",
@@ -78,6 +82,8 @@ function loadDubious() {
     var dubiousAsnString = res.asn || '1000, 1101, 1200';
     dubiousAsn = dubiousAsnString.split(", ");
   });
+  console.log("dubious geo: " + dubiousGeo)
+  console.log("dubious asn: " + dubiousAsn)
 }
 
 function compareHistory(url, ips) {
@@ -117,9 +123,20 @@ function compareHistory(url, ips) {
   	});
 }
 
+// load country names
+function loadCountryNames() {
+	var xhttp = new XMLHttpRequest();
+  	xhttp.open("GET", "resources/countryNames.json", false);
+  	xhttp.send();
+  	console.log(xhttp.responseText);
+  	return JSON.parse(xhttp.responseText);
+}
+
 var ipDetails = [];
 var dubiousGeo = [];
 var dubiousAsn = [];
+var countryNames = loadCountryNames();
+
 // always use full address (e.g. admissions.duke.edu, www.google.com)
 browser.webRequest.onBeforeRequest.addListener(
 	processURL,
