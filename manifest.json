@@ -12,6 +12,6 @@
       "default_title": "COS 561",
       "default_popup": "options.html"
   },
-  "permissions": ["storage", "webRequest", "notifications", "webNavigation"],
+  "permissions": ["storage", "webRequest", "notifications", "webNavigation", "webRequestBlocking"],
   "web_accessible_resources": ["resources/countryNames.json"]
 }

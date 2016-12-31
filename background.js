@@ -13,6 +13,7 @@ function processURL(requestDetails) {
 	// Use ipinfo API to retrieve details for each IP:
 	translate(ips);
 	compareHistory(url, ips);
+	return {cancel: false}; // TODO: implement request blocking logic
 }
 
 // TODO: implement traceRoute command:
@@ -43,7 +44,7 @@ function translationCallback(response) {
   	
   	// alert if dubious geo:
   	var countryCode = response["country"];
-  	// translate country code to country name
+  	// look up country name from country code
   	var countryString = this.countryNames[countryCode];
   	console.log("country: " + countryString);
 
@@ -123,7 +124,7 @@ function compareHistory(url, ips) {
   	});
 }
 
-// load country names
+// Load country names from json. This should only need to be called once.
 function loadCountryNames() {
 	var xhttp = new XMLHttpRequest();
   	xhttp.open("GET", "resources/countryNames.json", false);
@@ -140,5 +141,6 @@ var countryNames = loadCountryNames();
 // always use full address (e.g. admissions.duke.edu, www.google.com)
 browser.webRequest.onBeforeRequest.addListener(
 	processURL,
-	{urls: ["*://*/*"]} // match pattern: https or http://anyhost/anypath
+	{urls: ["*://*/*"]}, // match pattern: https or http://anyhost/anypath
+	["blocking"]
 )
