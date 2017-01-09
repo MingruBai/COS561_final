@@ -151,6 +151,22 @@ function loadCountryNames() {
   	return JSON.parse(xhttp.responseText);
 }
 
+// TODO!
+function toggleHeatmap() {
+	var heatmap = document.getElementById('heatmap');
+	var button = document.getElementById("heatmapButton");
+    if (heatmap.style.display === 'none') {
+
+    	///////////////
+
+    	button.innerHTML = "Hide Heatmap"
+        heatmap.style.display = 'block'; // unhide
+    } else {
+    	button.innerHTML = "Show Heatmap"
+        heatmap.style.display = 'none'; // hide
+    }
+}
+
 var ipDetails = [];
 var dubiousGeo = [];
 var dubiousAsn = [];
@@ -163,3 +179,5 @@ browser.webRequest.onBeforeRequest.addListener(
 	{urls: ["*://*/"]}, // match pattern: https or http://anyhost
 	["blocking"]
 )
+
+document.getElementById("heatmapButton").addEventListener("click", toggleHeatmap);
