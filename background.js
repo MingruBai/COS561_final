@@ -39,9 +39,12 @@ function translationCallback(countries, ases, response, hostname) {
   	var latitude = parseFloat(loc[0]);
     var longitude = parseFloat(loc[1]);
   	var newSize = coordinateHistory.unshift([latitude, longitude]);
+        
+    console.log(coordinateHistory.length);
   	if (newSize > 1000) {
   		coordinateHistory.pop();
   	}
+    localStorage.setItem("coordinate", coordinateHistory);
   	
   	// alert if dubious geo:
   	var countryCode = response["country"];
@@ -151,17 +154,38 @@ function loadCountryNames() {
   	return JSON.parse(xhttp.responseText);
 }
 
-// TODO!
 function toggleHeatmap() {
 	var heatmap = document.getElementById('heatmap');
 	var button = document.getElementById("heatmapButton");
     if (heatmap.style.display === 'none') {
+        console.log(localStorage.getItem("coordinate"));
+        coordinateHistory = localStorage.getItem("coordinate").split(",").map(Number);
+        console.log(coordinateHistory);
+    	
+		var heatmapData = [];
+		for(i = 0; i < coordinateHistory.length; i = i + 2) {
+            heatmapData.push(new google.maps.LatLng(coordinateHistory[i], coordinateHistory[i + 1]));
+        }
+        console.log(coordinateHistory.length);
 
-    	///////////////
+		var usCenter= new google.maps.LatLng(39, -98);
 
-    	button.innerHTML = "Hide Heatmap"
+		var map = new google.maps.Map(document.getElementById('map'), {
+		  center: usCenter,
+		  zoom: 3,
+		  mapTypeId: 'satellite'
+		});
+
+		var heatmap_layer = new google.maps.visualization.HeatmapLayer({
+		  data: heatmapData
+		});
+		heatmap_layer.setMap(map);
+
+    	button.innerHTML = "Show Traceroute Path"
         heatmap.style.display = 'block'; // unhide
     } else {
+		initMap();
+		
     	button.innerHTML = "Show Heatmap"
         heatmap.style.display = 'none'; // hide
     }
