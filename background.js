@@ -9,11 +9,12 @@ function processURL(requestDetails) {
 	console.log("Processing: " + url.hostname);
 	loadDubious();
 	// Issue traceRoute command to retrieve a list of IPs:
-	traceRoute(url.hostname);
+	traceRoute(url);
 }
 
 // Completed: implement traceRoute command:
-function traceRoute(hostname) {
+function traceRoute(url) {
+	var hostname = url.hostname;
 	var myRequest = new Request("http://cos432-assn3.cs.princeton.edu/traceroute?q=" + hostname);	
 	fetch(myRequest).then(function(response) {
   		return response.text();
@@ -32,6 +33,15 @@ function translationCallback(countries, ases, response, hostname) {
 	browser.storage.local.set({
     	ipDetails: ipDetails
   	});
+
+  	// store coordinate in history
+  	var loc = response["loc"].split(",");
+  	var latitude = parseFloat(loc[0]);
+    var longitude = parseFloat(loc[1]);
+  	var newSize = coordinateHistory.unshift([latitude, longitude]);
+  	if (newSize > 1000) {
+  		coordinateHistory.pop();
+  	}
   	
   	// alert if dubious geo:
   	var countryCode = response["country"];
@@ -145,10 +155,11 @@ var ipDetails = [];
 var dubiousGeo = [];
 var dubiousAsn = [];
 var countryNames = loadCountryNames();
+var coordinateHistory = new Array(); // history of all coordinates, to be used in heat map
 
 // always use full address (e.g. admissions.duke.edu, www.google.com)
 browser.webRequest.onBeforeRequest.addListener(
 	processURL,
-	{urls: ["*://*/"]}, // match pattern: https or http://anyhost/anypath
+	{urls: ["*://*/"]}, // match pattern: https or http://anyhost
 	["blocking"]
 )
