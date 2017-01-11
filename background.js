@@ -160,7 +160,14 @@ function toggleHeatmap() {
     if (heatmap.style.display === 'none') {
         console.log(localStorage.getItem("coordinate"));
         coordinateHistory = localStorage.getItem("coordinate").split(",").map(Number);
+        /*
+    	var xhttp = new XMLHttpRequest();
+  	    xhttp.open("GET", "research/locations.txt", false);
+  	    xhttp.send();
+        coordinateHistory = xhttp.responseText.split(",").map(Number);
         console.log(coordinateHistory);
+        console.log(coordinateHistory.length);
+        */
     	
 		var heatmapData = [];
 		for(i = 0; i < coordinateHistory.length; i = i + 2) {
