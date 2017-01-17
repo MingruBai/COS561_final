@@ -2,13 +2,17 @@
 
 To install:
   
+	Download the files in this repo to a local directory 
+
 	Download and install Firefox
   
-	Type "about:debugging" into the address bar
+	Type "about:debugging" into the address bar and hit enter 
   
 	Click "Load Temporary Add-on"
   
-	Choose any file in this folder
+	Choose any file in this folder to load the extension
+	
+	Now the extension is ready to use
 
 To test:
 
